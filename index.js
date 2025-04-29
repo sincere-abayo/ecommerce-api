@@ -9,7 +9,7 @@ require('dotenv').config();
 // Initialize express app
 const app = express();
 const PORT = process.env.PORT || 3000;
-const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key';
+const JWT_SECRET = process.env.JWT_SECRET || 'Tm8eRQiGyHhmMk4DRYwyi7/AOw1Lpqgyv1CCmywNRME=';
 
 // Middleware
 app.use(cors());
@@ -18,15 +18,17 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // MySQL Connection Pool
 const pool = mysql.createPool({
-  host: process.env.DB_HOST,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  database: process.env.DB_NAME,
+  host: process.env.DB_HOST || 'mysql-mysqlaccess.alwaysdata.net',
+  port: process.env.DB_PORT || 3306,
+  user: process.env.DB_USER || '411189_root',
+  password: process.env.DB_PASSWORD || '7mYY8XeVN8rwTN_',
+  database: process.env.DB_NAME || 'mysqlaccess_ecommerce',
   waitForConnections: true,
   connectionLimit: 10,
-  queueLimit: 0,
-  ssl: process.env.NODE_ENV === 'production' ? {rejectUnauthorized: true} : false
+  queueLimit: 0
 });
+
+
 
 
 // Initialize database
